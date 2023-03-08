@@ -4,11 +4,14 @@ const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
+// TODO: Add and configure workbox plugins for a service worker and manifest file.
+// TODO: Add CSS loaders and babel to webpack.
 module.exports = () => ({
     mode: 'development',
     entry: {
         main: './src/js/index.js',
         install: './src/js/install.js',
+        // include database, editor, and header files
         database: './src/js/database.js',
         editor: './src/js/editor.js',
         header: './src/js/header.js',
@@ -19,12 +22,12 @@ module.exports = () => ({
         assetModuleFilename: '[name][ext]',
     },
     plugins: [
-        // Generates HTML file and injects our bundles
+        // Generates HTML file
         new HtmlWebpackPlugin({
             template: './index.html',
             title: 'JATE',
         }),
-        // Injects our custom service worker
+        // use Manifest to inject custom service worker
         new InjectManifest({
             swSrc: './src-sw.js',
             swDest: 'src-sw.js',
@@ -58,12 +61,12 @@ module.exports = () => ({
 
     module: {
         rules: [
-            // CSS loaders for the lovely people
+            // Add CSS loader
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
-            // Managing output of assets
+            // Handle assets output
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
@@ -71,7 +74,7 @@ module.exports = () => ({
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
-                // We use babel-loader in order to use ES6 in older browsers.
+                // Use babel-loader to use ES6 in older browsers.
                 use: {
                     loader: 'babel-loader',
                     options: {
