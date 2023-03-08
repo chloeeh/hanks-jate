@@ -6,7 +6,7 @@
     "start": "webpack --watch"
   },
   "author": "2U",
-  "license": "UNLICENSED",
+  "license": "UNLICENSED", 
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/plugin-transform-runtime": "^7.15.0",
