@@ -1,16 +1,16 @@
 const butInstall = document.getElementById('buttonInstall');
 
-/* ----------- an event handler to the `beforeinstallprompt` event ---------- */
+/* ----------- BEFORE INSTALL PROMPT EVENT ---------- */
 window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
-    // Store the triggered events
+    // Store triggered events
     window.deferredPrompt = event;
 
-    // Remove the hidden class from the button.
+    // Remove hidden class from button.
     butInstall.classList.toggle('hidden', false);
 });
 
-/* ------------ a click event handler on the `butInstall` element ----------- */
+/* ------------ BUTTON INSTALL CLICK HANDLER ----------- */
 butInstall.addEventListener('click', async () => {
     // Select the deferredPrompt
     const promptEvent = window.deferredPrompt;
@@ -20,13 +20,13 @@ butInstall.addEventListener('click', async () => {
     }
     // Show prompt
     promptEvent.prompt();
-    // Reset the deferred prompt variable, it can only be used once.
+    // Reset deferred prompt variable; can only be used once.
     window.deferredPrompt = null;
-    // Hide the install button
+    // Hide install button
     butInstall.classList.toggle('hidden', true);
 });
 
-/* ----------------- a handler for the `appinstalled` event ----------------- */
+/* ----------------- APP INSTALLED EVENT HANDLER ----------------- */
 window.addEventListener('appinstalled', () => {
     // Clear prompt
     window.deferredPrompt = null;
