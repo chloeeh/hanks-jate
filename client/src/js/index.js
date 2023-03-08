@@ -2,6 +2,7 @@ import { Workbox } from 'workbox-window';
 import Editor from './editor';
 import './database';
 import '../css/style.css';
+// include 96x96 icon for brandimg on righthandside of navbar
 import BrandImg from '../images/icon_96x96.png';
 
 const main = document.querySelector('#main');
@@ -18,7 +19,7 @@ const loadSpinner = () => {
     main.appendChild(spinner);
 };
 
-// Inject logo
+// Insert logo
 const navbarBrand = document.querySelector('.navbar-brand__img');
 navbarBrand.src = BrandImg;
 
@@ -28,7 +29,7 @@ if (typeof editor === 'undefined') {
     loadSpinner();
 }
 
-// Check if service workers are supported
+// Check whether service workers are supported or not
 if ('serviceWorker' in navigator) {
     // register workbox service worker
     const workboxSW = new Workbox('/src-sw.js');
